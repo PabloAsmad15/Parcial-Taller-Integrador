@@ -433,13 +433,19 @@ function App() {
 
     try {
       // Define API URL based on environment
-      const apiUrl = process.env.NODE_ENV === 'production'
-        ? '/api/recommend'  // In production, use relative path
-        : 'http://localhost:8000/api/recommend'; // In development, use local server
+      const apiUrl = 'https://parcial-taller-integrador-bwdu.vercel.app/api/recommend';
+      console.log('Calling API at:', apiUrl); // Para debugging
       
-      const response = await axios.post(apiUrl, {
+      const requestData = {
         malla_origen: parseInt(mallaSeleccionada, 10),
         cursos_aprobados: cursosAprobados,
+      };
+      console.log('Sending data:', requestData);
+      
+      const response = await axios.post(apiUrl, requestData, {
+        headers: {
+          'Content-Type': 'application/json',
+        }
       });
       
       // Validate response structure

@@ -19,10 +19,7 @@ app = FastAPI(title="Recomendador de Cursos API")
 # Configuración de CORS para permitir peticiones desde el frontend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:3000",  # Development
-        "https://parcial-taller-integrador.vercel.app",  # Production - update this with your actual domain
-    ],
+    allow_origins=["*"],  # Permitir todas las origenes durante el desarrollo
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
