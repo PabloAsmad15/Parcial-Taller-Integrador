@@ -432,9 +432,12 @@ function App() {
     setRecomendacion(null);
 
     try {
-      // La URL '/api/recommend' funciona para Vercel y para la prueba local.
-      // El backend de Python debe estar corriendo en http://localhost:8000
-      const response = await axios.post('http://localhost:8000/api/recommend', {
+      // Define API URL based on environment
+      const apiUrl = process.env.NODE_ENV === 'production'
+        ? '/api/recommend'  // In production, use relative path
+        : 'http://localhost:8000/api/recommend'; // In development, use local server
+      
+      const response = await axios.post(apiUrl, {
         malla_origen: parseInt(mallaSeleccionada, 10),
         cursos_aprobados: cursosAprobados,
       });
