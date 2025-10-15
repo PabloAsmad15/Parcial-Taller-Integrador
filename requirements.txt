@@ -1,4 +1,4 @@
-fastapi
-pydantic
-python-multipart
-typing-extensions
+fastapi==0.68.2
+pydantic==1.10.13
+typing-extensions==4.8.0
+python-multipart==0.0.5
