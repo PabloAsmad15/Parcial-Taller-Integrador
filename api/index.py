@@ -14,10 +14,18 @@ import time
 UMBRAL_DE_COMPLEJIDAD = 22
 
 # --- INICIA LA APLICACIÓN API ---
-app = FastAPI()
+app = FastAPI(title="Recomendador de Cursos API")
+
+# Configuración de CORS para permitir peticiones desde el frontend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], allow_credentials=True, allow_methods=["*"], allow_headers=["*"],
+    allow_origins=[
+        "http://localhost:3000",  # Development
+        "https://parcial-taller-integrador.vercel.app",  # Production - update this with your actual domain
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # --------------------------------------------------------------------------
@@ -211,6 +219,10 @@ if MALLA_COMPLETA_2025 is not None and MAPA_CONVAL is not None:
     print("✅ Servidor listo para recibir peticiones.")
 else:
     print("❌ Error cargando datos iniciales")
+
+@app.get("/")
+async def read_root():
+    return {"status": "ok", "message": "API is running"}
 
 @app.post("/api/recommend")
 def recommend_courses(user_input: UserInput):
