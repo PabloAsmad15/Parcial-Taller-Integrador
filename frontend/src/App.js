@@ -564,8 +564,6 @@ function App() {
     );
   };
   
-  const [showCourses, setShowCourses] = useState(false);
-
   return (
     <div className="App">
       <header className="App-header">
