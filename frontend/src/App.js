@@ -442,12 +442,16 @@ function App() {
       };
       console.log('Sending data:', requestData);
       
-      const response = await axios.post(apiUrl, requestData, {
+      const response = await axios({
+        method: 'post',
+        url: apiUrl,
+        data: requestData,
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
-        withCredentials: false
+        withCredentials: false,
+        mode: 'cors'
       });
       
       // Validate response structure
