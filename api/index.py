@@ -185,16 +185,31 @@ def recomendar_backtracking_por_ramas(malla_completa, malla_por_ciclo, cursos_ap
 # PARTE 3: CARGA GLOBAL DE DATOS Y ENDPOINT DE LA API
 # --------------------------------------------------------------------------
 print("Iniciando servidor y cargando datos...")
-# Usar paths relativos para Vercel
+# Configuración de rutas para archivos CSV
 import os
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-MALLA_2025_PATH = 'Malla 2025.csv'
-CONVAL_PATH = 'Convalicones malla 2025 2015-2019-2022.csv'
 
-# Si estamos en desarrollo local, usar paths absolutos
-if os.environ.get('VERCEL_ENV') != 'production':
-    MALLA_2025_PATH = os.path.join(BASE_DIR, MALLA_2025_PATH)
-    CONVAL_PATH = os.path.join(BASE_DIR, CONVAL_PATH)
+def get_csv_path(filename):
+    # Primero intenta en el directorio actual
+    if os.path.exists(filename):
+        return filename
+    
+    # Luego intenta en el directorio api/
+    api_path = os.path.join('api', filename)
+    if os.path.exists(api_path):
+        return api_path
+        
+    # Finalmente, intenta con la ruta absoluta
+    abs_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), filename)
+    if os.path.exists(abs_path):
+        return abs_path
+        
+    print(f"⚠️ No se pudo encontrar el archivo: {filename}")
+    print(f"Directorio actual: {os.getcwd()}")
+    print(f"Contenido del directorio: {os.listdir('.')}")
+    return filename
+
+MALLA_2025_PATH = get_csv_path('Malla 2025.csv')
+CONVAL_PATH = get_csv_path('Convalicones malla 2025 2015-2019-2022.csv')
 
 print(f"📂 Verificando archivos:")
 print(f"   Malla 2025: {os.path.exists(MALLA_2025_PATH)}")

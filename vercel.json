@@ -5,14 +5,10 @@
       "src": "api/index.py",
       "use": "@vercel/python",
       "config": {
-        "runtime": "python3.9",
+        "pythonVersion": "3.9",
         "maxLambdaSize": "15mb",
         "memory": 1024,
-        "buildCommand": "pip install -r requirements.txt",
-        "includeFiles": [
-          "api/*.csv",
-          "api/runtime.txt"
-        ]
+        "buildCommand": "pip install --no-cache-dir -r requirements.txt"
       }
     }
   ],
