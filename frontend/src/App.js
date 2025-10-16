@@ -433,7 +433,7 @@ function App() {
 
     try {
       // Define API URL based on environment
-      const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+      const apiUrl = 'https://parcial-taller-integrador.vercel.app';
       const recommendUrl = `${apiUrl}/recommend`;
       console.log('Calling API at:', recommendUrl); // Para debugging
       
