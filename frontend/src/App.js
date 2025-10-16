@@ -433,9 +433,8 @@ function App() {
 
     try {
       // Define API URL based on environment
-      const apiUrl = 'https://parcial-taller-integrador.vercel.app';
-      const recommendUrl = `${apiUrl}/recommend`;
-      console.log('Calling API at:', recommendUrl); // Para debugging
+      const apiUrl = 'https://parcial-taller-integrador-bwdu.vercel.app/api/recommend';
+      console.log('Calling API at:', apiUrl); // Para debugging
       
       const requestData = {
         malla_origen: parseInt(mallaSeleccionada, 10),
@@ -443,16 +442,10 @@ function App() {
       };
       console.log('Sending data:', requestData);
       
-      const response = await axios({
-        method: 'post',
-        url: apiUrl,
-        data: requestData,
+      const response = await axios.post(apiUrl, requestData, {
         headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        withCredentials: false,
-        mode: 'cors'
+          'Content-Type': 'application/json'
+        }
       });
       
       // Validate response structure

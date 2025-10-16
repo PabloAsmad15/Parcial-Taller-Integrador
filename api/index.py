@@ -19,12 +19,11 @@ app = FastAPI(title="Recomendador de Cursos API")
 # Configuración de CORS para permitir peticiones desde el frontend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Permitir todos los orígenes
+    allow_origins=["*"],
     allow_credentials=False,
-    allow_methods=["*"],
+    allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["*"],
-    expose_headers=["*"],
-    max_age=600,
+    max_age=86400,
 )
 
 # --------------------------------------------------------------------------
