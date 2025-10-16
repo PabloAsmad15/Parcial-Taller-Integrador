@@ -10,7 +10,8 @@
         "memory": 1024,
         "buildCommand": "pip install -r requirements.txt",
         "includeFiles": [
-          "api/*.csv"
+          "api/*.csv",
+          "api/runtime.txt"
         ]
       }
     }
